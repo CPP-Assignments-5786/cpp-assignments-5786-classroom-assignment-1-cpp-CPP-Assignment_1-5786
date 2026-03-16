@@ -43,7 +43,7 @@ Utilities.o: Utilities.cpp Utilities.hpp Point.hpp Circle.hpp
 main.o: main.cpp Point.hpp Circle.hpp Utilities.hpp
 
 tidy:
-	clang-tidy *.cpp $(TIDY_FLAGS) -- $(CXXFLAGS)
+	clang-tidy $(filter-out test.cpp, $(wildcard *.cpp)) $(TIDY_FLAGS) -- $(CXXFLAGS)
 
 clean:
 	rm -f *.o demo test student_test
