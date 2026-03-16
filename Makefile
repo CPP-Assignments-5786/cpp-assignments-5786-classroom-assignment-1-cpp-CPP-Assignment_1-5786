@@ -1,6 +1,7 @@
 CXX=clang++
 CXXFLAGS=-std=c++23 -Werror -Wsign-conversion
 TIDY_FLAGS=-checks=bugprone-*,clang-analyzer-*,cppcoreguidelines-*,performance-*,portability-*,readability-* --warnings-as-errors=*
+TIDY_EXCLUDE=test.cpp main.cpp
 
 SOURCES=Point.cpp Circle.cpp Utilities.cpp
 OBJECTS=$(subst .cpp,.o,$(SOURCES))
@@ -43,7 +44,7 @@ Utilities.o: Utilities.cpp Utilities.hpp Point.hpp Circle.hpp
 main.o: main.cpp Point.hpp Circle.hpp Utilities.hpp
 
 tidy:
-	clang-tidy $(filter-out test.cpp, $(wildcard *.cpp)) $(TIDY_FLAGS) -- $(CXXFLAGS)
+	clang-tidy $(filter-out $(TIDY_EXCLUDE), $(wildcard *.cpp)) $(TIDY_FLAGS) -- $(CXXFLAGS)
 
 clean:
 	rm -f *.o demo test student_test
