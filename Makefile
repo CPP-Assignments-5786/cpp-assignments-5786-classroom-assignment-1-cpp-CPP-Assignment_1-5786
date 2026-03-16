@@ -1,7 +1,7 @@
 CXX=clang++
 CXXFLAGS=-std=c++23 -Werror -Wsign-conversion
 TIDY_FLAGS=-checks=bugprone-*,clang-analyzer-*,cppcoreguidelines-*,performance-*,portability-*,readability-* --warnings-as-errors=*
-TIDY_EXCLUDE=test.cpp main.cpp
+TIDY_EXCLUDE=test.cpp main.cpp StudentTest.cpp
 
 SOURCES=Point.cpp Circle.cpp Utilities.cpp
 OBJECTS=$(subst .cpp,.o,$(SOURCES))
